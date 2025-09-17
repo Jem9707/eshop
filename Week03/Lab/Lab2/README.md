@@ -88,7 +88,7 @@ services:
         parallelism: 1
         order: start-first
   result:
-    image: magdysalem/voting-rersult
+    image: <Enter your own image ref>
     depends_on:
       - redis
     ports:
@@ -125,7 +125,7 @@ docker stack services voting
 ```
 Check service tasks:
 ```bash
-docker service ps voting_api
+docker service ps voting_worker
 docker service ps voting_web
 ```
 
@@ -136,11 +136,6 @@ Scale workers:
 ```bash
 docker service scale voting_worker=4
 ```
-Rolling update the API image (after tagging a new version):
-```bash
-docker service update --image voting-api:v2 voting_api
-```
-
 ---
 
 ## 6) Access the app
@@ -154,8 +149,8 @@ Swarm publishes ports on the **ingress** network; requests are load-balanced acr
 ## 7) Inspect & Logs
 ```bash
 docker service ls
-docker service ps voting_api
-docker service logs -f voting_api
+docker service ps voting_worker
+docker service logs -f voting_web
 docker stack ps voting
 docker stack services voting
 ```
