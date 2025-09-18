@@ -6,6 +6,7 @@ This week you’ll take the microservices from Week 2 and orchestrate them using
 
 ---
 
+
 ## 🧰 Tools
 
 - Docker Compose
@@ -15,6 +16,12 @@ This week you’ll take the microservices from Week 2 and orchestrate them using
 ---
 
 ## Part 1: Docker Compose 
+
+### Make sure to build Webhook-API and WebHook-Client
+Please make sure you built webhooks images correctly. Week2 mention wrong path for Webhook-client. 
+Please use the following path to build image correct.
+- [ ] Webhooks.API → `Services/Webhooks/Webhooks.API`  
+- [ ] Webhooks-Client → `src/Web/WebhookClient`  
 
 ### ✅ Task
 

@@ -36,7 +36,8 @@ You will be `Build` Dockerfiles for the following key services: Review each serv
 - [ ] Gateway Mobil API → `src/ApiGateways/Mobile.Bff.Shopping/aggregator`
 - [ ] Gateway Web API → `src/ApiGateways/Web.Bff.Shopping/aggregator`
 - [ ] Ordering.SignalrHub → `src/Services/Ordering/Ordering.SignalrHub`
-- [ ] Webhooks.API → `src/Web/WebhookClient`  
+- [ ] Webhooks.API → `Services/Webhooks/Webhooks.API`  
+- [ ] Webhooks-Client → `src/Web/WebhookClient`  
 - [ ] Ordering.BackgroundTasks → `src/Services/Ordering/Ordering.BackgroundTasks`
 
 ---
