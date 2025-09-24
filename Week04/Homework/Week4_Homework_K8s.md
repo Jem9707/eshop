@@ -83,3 +83,19 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
    ```
 
 ---
+
+5. Test with nginx deployment
+```bash
+kubectl  create deployment nginx --image=nginx:1.27-alpine
+
+kubectl expose deployment nginx --port=80 --target-port=80
+
+kubectl port-forward svc/nginx 8080:80
+```
+
+Then use the browser to access http://localhost:8080
+
+---
+
+
+
