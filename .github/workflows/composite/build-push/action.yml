@@ -24,20 +24,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: Enable experimental features for the Docker daemon and CLI
-    shell: bash
-    run: |
-        echo $'{\n  "experimental": true\n}' | sudo tee /etc/docker/daemon.json
-        mkdir -p ~/.docker
-        echo $'{\n  "experimental": "enabled"\n}' | sudo tee ~/.docker/config.json
-        sudo service docker restart
-        docker version -f '{{.Client.Experimental}}'
-        docker version -f '{{.Server.Experimental}}'
-
   - name: Login to Container Registry
-    uses: docker/login-action@v1
+    uses: docker/login-action@v3
     with:
-      registry: ${{ inputs.registry_host }}
       username: ${{ inputs.registry_username }}
       password: ${{ inputs.registry_password }}
 
@@ -63,9 +52,3 @@ runs:
     env:
       TAG: ${{ env.BRANCH }}
       REGISTRY: ${{ inputs.registry_endpoint }}
-
-  - name: Create multiarch manifest
-    shell: bash
-    run: |
-      docker --config ~/.docker manifest create ${{ inputs.registry_endpoint  }}/${{ inputs.image_name }}:${{ env.BRANCH  }} ${{ inputs.registry_endpoint  }}/${{ inputs.image_name  }}:linux-${{ env.BRANCH  }}
-      docker --config ~/.docker manifest push ${{ inputs.registry_endpoint  }}/${{ inputs.image_name }}:${{ env.BRANCH  }}
