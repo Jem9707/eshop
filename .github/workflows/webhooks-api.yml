@@ -36,7 +36,7 @@ jobs:
       uses: ./.github/workflows/composite/build-push
       with:
         service: ${{ env.SERVICE }}
-        service_path: Webhooks/Webhooks.API
+        service_path: Services/Webhooks/Webhooks.API
         registry_host: ${{ secrets.REGISTRY_HOST }}
         registry_endpoint: ${{ secrets.REGISTRY_ENDPOINT }}
         image_name: ${{ env.IMAGE }}

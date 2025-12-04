@@ -51,7 +51,7 @@ runs:
     shell: bash
     run: |
       docker build -t ${{ inputs.registry_endpoint }}/${{ inputs.image_name }}:${{ env.BRANCH }} \
-        -f ./Code/Homework/src/Services/${SERVICE_PATH}/Dockerfile \
+        -f ./Code/Homework/src/${SERVICE_PATH}/Dockerfile \
         ./Code/Homework/src
     env:
       SERVICE_PATH: ${{ inputs.service_path }}
