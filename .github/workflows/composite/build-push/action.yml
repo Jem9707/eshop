@@ -5,6 +5,9 @@ inputs:
   service:
     description: "Service to build"
     required: true
+  service_path:
+    description: "Path to service directory (e.g., Basket/Basket.API)"
+    required: true
   registry_host:
     description: "Image registry host e.g. docker.io"
     required: true
@@ -44,18 +47,15 @@ runs:
       echo "BRANCH=$currentbranch" >> $GITHUB_ENV
     shell: bash
 
-  - name: Compose build ${{ inputs.service }}
+  - name: Build Docker image
     shell: bash
-    run: sudo -E docker-compose build ${{ inputs.service }}
-    working-directory: ./Code/Homework/src
+    run: |
+      docker build -t ${{ inputs.registry_endpoint }}/${{ inputs.image_name }}:${{ env.BRANCH }} \
+        -f ./Code/Homework/src/Services/${SERVICE_PATH}/Dockerfile \
+        ./Code/Homework/src
     env:
-      TAG: ${{ env.BRANCH }}
-      REGISTRY: ${{ inputs.registry_endpoint }}
+      SERVICE_PATH: ${{ inputs.service_path }}
 
-  - name: Compose push ${{ inputs.service }}
+  - name: Push Docker image
     shell: bash
-    run: sudo -E docker-compose push ${{ inputs.service }}
-    working-directory: ./Code/Homework/src
-    env:
-      TAG: ${{ env.BRANCH }}
-      REGISTRY: ${{ inputs.registry_endpoint }}
+    run: docker push ${{ inputs.registry_endpoint }}/${{ inputs.image_name }}:${{ env.BRANCH }}

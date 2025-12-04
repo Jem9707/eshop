@@ -36,6 +36,7 @@ jobs:
       uses: ./.github/workflows/composite/build-push
       with:
         service: ${{ env.SERVICE }}
+        service_path: Catalog/Catalog.API
         registry_host: ${{ secrets.REGISTRY_HOST }}
         registry_endpoint: ${{ secrets.REGISTRY_ENDPOINT }}
         image_name: ${{ env.IMAGE }}
